@@ -8,7 +8,6 @@ import {
 import {
   Divider,
   List,
-  ListItem,
   ListItemIcon,
   ListItemText,
   MenuItem,
@@ -17,6 +16,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/finance-logo.png";
+import NavMenu from "./NavMenu";
 
 interface MenuType {
   name: string;
@@ -71,17 +72,15 @@ export default function Sidebar() {
 
   return (
     <div className="bg-white/30 w-[220px] border-r backdrop-blur-md">
-      <div className="flex flex-col h-full pb-5">
-        <div className="flex-1">
+      <div className="flex flex-col h-full pb-5 pt-5">
+        <Link to={"/"} className="w-auto mx-auto cursor-pointer">
+          <img src={logo} alt="Logo" className="!w-24" />
+        </Link>
+        <div className="flex-1 mt-3">
           {/* menus */}
           <List>
-            {menus.map(({ icon, name, path }, index) => (
-              <ListItem key={index} component={Link} to={path}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText>
-                  <Typography variant="body2">{name}</Typography>
-                </ListItemText>
-              </ListItem>
+            {menus.map((item, index) => (
+              <NavMenu {...item} key={index} />
             ))}
           </List>
         </div>
